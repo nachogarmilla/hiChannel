@@ -1,0 +1,7 @@
+afer_this_hour,use_this_messages_file,status_message,staus_icon
+6,saludos.txt,,:smile:
+10.25,descanso.txt,Break,:coffee:
+13,deVuelta.txt,,:smile:
+13.25,acomer.txt,Lunch Time,:pizza:
+16.5,deVuelta.txt,,:smile:
+17.5,despedida.txt,Hasta Mañana,:zzz:
