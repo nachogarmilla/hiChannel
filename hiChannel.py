@@ -1,6 +1,7 @@
 # Sends a message to several channels in slack and changes Icon and/or Status Message.
 # This version doesn't use slack's library. Only webapi calls
-# ngarmilla marzo.21
+# https://github.com/nachogarmilla/hiChannel
+# March 2021
 
 # Coding Resources
     # https://www.w3schools.com/python/ref_requests_post.asp
@@ -10,7 +11,7 @@
     # https://api.slack.com/docs/presence-and-status
     # https://levelup.gitconnected.com/the-easy-guide-to-python-command-line-arguments-96b4607baea1
 
-# Improvements:
+# Pending Improvements:
     # Function Arguments documentation
     # Translate code comments (spanish to english)
     # Add more comments?
