@@ -15,6 +15,16 @@ Developed, tested and used on Win 10, Python 3.9.0 and Request 2.25.1
 
 Slack's token can be provided as parameter (see below) and as environment variable, named `slack_hichannel_token` (recomended)
 
+### Slack
+
+You'll need to create an Slack App (https://api.slack.com/apps) and provide the following `User Token Scopes`:
+
+* `channels:read`- View basic information about public channels in a workspace. [Link](https://api.slack.com/scopes/channels:read)
+* `chat:write`- Send messages on a user’s behalf. [Link](https://api.slack.com/scopes/chat:write)
+* `users.profile:write`- Edit a user’s profile information and status. [Link](https://api.slack.com/scopes/users.profile:write)
+
+
+
 ### Files
 
 There are some important files to setup and place in the **hiChannel.py** folder.
