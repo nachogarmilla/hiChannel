@@ -100,17 +100,19 @@ def smart_Message_File_Selector(StsMes, StsIco):
                     TimeFramesMessages.append(row[1])
                     TimeFramesStatusMessages.append(row[2])
                     TimeFramesStatusIcons.append(row[3])
-    except:
-        sys.exit("Error opening timetables file.")
+    except Exception as e:
+        print("Error opening timetables file.")
+        print(e)
+        input("Press Enter to exit.")
+        sys.exit()
     
-
-    # Para la lógica de asignación conviene que se recorra de hora mayor hacia hora menor
+    # For the assign logic it's more convenient to have the list from bigger to smaller hours
     TimeFramesHours.reverse()
     TimeFramesMessages.reverse()
     TimeFramesStatusMessages.reverse()
     TimeFramesStatusIcons.reverse()
 
-    # Busqueda de de ventana horaria en la que estamos para asignar fichero de mensajes, status e icono
+    # Search for the timeframe in which we are to assign a message file, status and icon
     Count = 0
     for i in TimeFramesHours:
         Count = Count + 1 
@@ -172,7 +174,7 @@ def channels_Load(ChannelsFile):
         with open(ChannelsFile, "r") as ChannelsFileContent:
             ChannelsLoaded = ChannelsFileContent.readlines()
 
-        ChannelsLoaded = [i.strip() for i in ChannelsLoaded] # Retira los \n de la lista de canales
+        ChannelsLoaded = [i.strip() for i in ChannelsLoaded] # Removes \n from the channel list
 
         print(f" Number of Channels: {len(ChannelsLoaded)}")
 
@@ -182,8 +184,11 @@ def channels_Load(ChannelsFile):
 
         return ChannelsLoaded
 
-    except:
-       sys.exit("Error opening channel files. Exiting.")
+    except Exception as e:
+        print("Error opening channel files.")
+        print(e)
+        input("Press Enter to exit.")
+        sys.exit()
 
 def message_To_Send_Selection(MessagesFile, UseFirstMessage):
     '''Picks message to send from the message file'''
@@ -191,17 +196,19 @@ def message_To_Send_Selection(MessagesFile, UseFirstMessage):
     global VerboseMode
 
     try:
-        # Abre fichero de mensajes
         with open(MessagesFile, "r", encoding = "utf8") as MessagesFileContent:
             Messages = MessagesFileContent.readlines()
-        Messages = [i.strip() for i in Messages] # Retira los \n de la lista de mensajes
+        Messages = [i.strip() for i in Messages] # Removes \n from the messages list
         if VerboseMode:
             print(f"{len(Messages)} messages loaded.")
             print(f"Messages loaded: {Messages}")
-    except:
-       sys.exit("Error opening messages files. Exiting.")
+    except Exception as e:
+        print("Error opening messages files.")
+        print(e)
+        input("Press Enter to exit.")
+        sys.exit()
 
-    # Elije mensaje a enviar
+    # Choosing the message to send
     if UseFirstMessage:
         ChoosenMessage = Messages[0]
     else:
