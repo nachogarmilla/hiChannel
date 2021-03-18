@@ -1,7 +1,7 @@
 # hiChannel
 Python tool for sending messages to several Slack groups and change Icon and/or status message.
 
-I use it to say hi! or Bye in several work channels, instead of search and write on each one.
+I use it to say _Hi!, Bye, I'm having a coffe,..._ in several work channels, instead of search and write on each one.
 
 It doesn't send scheduled messages but sends messages (indicated or selected depending of the system time) triggered by the user.
 
