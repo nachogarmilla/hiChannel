@@ -78,6 +78,9 @@ optional arguments:
   -auth                 Test authentication. Don't sends message.
   -file FILE            Use this particular file for messages source.
   -timetable            Use 'timetable.txt' to decide the messages file to use according to the system hour.
+  -ask                  Request the user to input the message and sets icon and status message to empty.
+
+  Following parameters are mutually exclusive: auth, file, timetable, ask.
 ```
 
 **SUGGESTION:** I love to launch **hiChannel.py** using a `.bat` file. You'll find one example in the `Examples` folder:

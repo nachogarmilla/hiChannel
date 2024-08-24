@@ -17,7 +17,6 @@
 
 # Non native Python library: https://pypi.org/project/requests/
 import requests
-
 import os
 import argparse
 import random
@@ -48,6 +47,7 @@ group = parser.add_mutually_exclusive_group(required = True)
 group.add_argument("-auth", action = "store_true", help = "Test authentication. Doesn't send any message.")
 group.add_argument("-file", type = str, help = "Use this particular file for messages source.")
 group.add_argument("-timetable", action = "store_true", help = "Use '" + DefaultTimeTableFile + "' to decide the messages file to use according to the system hour.")
+group.add_argument("-ask", action = "store_true", help = "Request the user to input the message and sets icon and status message to empty.")
 
 cliArgs = parser.parse_args()
 
@@ -63,6 +63,7 @@ UseTimetableFile = cliArgs.timetable
 StatusMessage = cliArgs.statusMes
 StatusIcon = cliArgs.StatusIcon
 AskForConfirm = cliArgs.confirm
+AskForMessage = cliArgs.ask
 
 def smart_Message_File_Selector(StsMes, StsIco):
     '''Determines the message file, status message and status icon depending of system timetable and timetables file'''
@@ -278,9 +279,18 @@ if __name__ == "__main__":
         authentication_Check(UrlAuthSlack, slackRequestHeaders)
     else:
         Channels = channels_Load(ChannelsFileToUse)
-        channelMessage = message_To_Send_Selection(MessagesFileToUse, UseFirstLine)
+        
+        if AskForMessage:
+            print()
+            ChannelMessage = input(" Please input the message: ")
+            StatusMessage = ""
+            StatusIcon = ""
+        else:
+            ChannelMessage = message_To_Send_Selection(MessagesFileToUse, UseFirstLine)
+        
         print(f" Status Message: {StatusMessage}")
         print(f" Status Icon: {StatusIcon}")
+
         if not TestMode:
             if AskForConfirm:
                 print()
@@ -288,7 +298,7 @@ if __name__ == "__main__":
                 if userConfirm != "y":
                     print()
                     sys.exit("Aborted by user.")
-            send_Message_To_Slack(UrlMesSlack, slackRequestHeaders, channelMessage, Channels)
+            send_Message_To_Slack(UrlMesSlack, slackRequestHeaders, ChannelMessage, Channels)
             change_Slack_Status(UrlStatusSlack, slackRequestHeaders, StatusMessage, StatusIcon)            
         else:
             print("Test Mode. Message/s not send.")
